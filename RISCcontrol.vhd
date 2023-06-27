@@ -13,7 +13,8 @@ entity RISCcontrol is
 			oMemToReg : out std_logic;
 			oMemWrite : out std_logic;
 			oAluSrc : out std_logic;
-			oBranch : out std_logic
+			oBranch : out std_logic;
+			oBNE : out std_logic
 		);
 end entity;
 
@@ -29,19 +30,24 @@ signal midRT : std_logic;
 signal midJUMP : std_logic;
 --Branch if equal (BEQ):
 signal midBEQ : std_logic;
+--Branch if not equal ( BNE):
+signal midBNE : std_logic;
 
-begin  --DOUBLE CHECK
+begin  
  -- Control logic assigned to each of the instruction inter signal. 
- -- 000001 : (1) -> Rtpye. 
-midRT <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and not(iOP(1)) and iOP(0);
- -- 000010 : (2) -> Store word.
-midSW <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and iOP(1) and not(iOP(0));
- -- 000100 : (3) -> Load word.
-midLW <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and iOP(2) and not(iOP(1)) and not(iOP(0));
- -- 001000 : (4) -> Jump word.
-midJUMP <= not(iOP(5)) and not(iOP(4)) and iOP(3) and not(iOP(2)) and not(iOP(1)) and not(iOP(0));
- -- 010000 : (5) -> BEQ word.
-midBEQ <= not(iOP(5)) and iOP(4) and not(iOP(3)) and not(iOP(2)) and not(iOP(1)) and not(iOP(0));
+ --ADD BNE
+ -- 000000 : (0  : decimal) -> Rtype
+midRT <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and not(iOP(1)) and not(iOP(0));
+ -- 100011 : (35 : decimal) -> Store
+midLW <= iOP(5) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and iOP(1) and iOP(0);
+ -- 101011 : (43 : decimal) -> Load 
+midSW <= iOP(5) and not(iOP(4)) and iOP(3) and not(iOP(2)) and iOP(1) and iOP(0);
+ -- 000010 : (2  : decimal) -> Jump 
+midJUMP <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and iOP(1) and not(iOP(0));
+ -- 000100 : (4  : decimal) -> BEQ 
+midBEQ <= not(iOP(5)) and iOP(4) and not(iOP(3)) and iOP(2) and not(iOP(1)) and not(iOP(0));
+ -- 000101 : (5  : decimal) -> BNE
+midBNE <= not(iOP(5)) and iOP(4) and not(iOP(3)) and iOP(2) and not(iOP(1)) and iOP(0);
 
 --Driving the correct sets and resets to the control signals output by the control unit. 
 oALUop(1) <= midRT;
@@ -54,6 +60,6 @@ oMemToReg <= midLW;
 oMemWrite <= midSW;
 oAluSrc <= midSW or midLW;
 oBranch <= midBEQ;
- 
+oBNE <= midBNE;
 end struct;
  

@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity cla8bitALU is --aluCLA_8bit
+entity cla8bitALU is 
 	port 
 		(
 			inA : in std_logic_vector(7 downto 0);

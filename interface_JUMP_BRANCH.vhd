@@ -8,7 +8,8 @@ entity interface_JUMP_BRANCH is
 			instrBITS : in std_logic_vector(25 downto 0);
 			instrADDR : in std_logic_vector( 7 downto 0);
 			incrementedADDR : in std_logic_vector( 7 downto 0);
-			assertBranch : in std_logic;
+			assertBranch : in std_logic; --BEQ
+			assertBranchNotEqual : in std_logic; -- BNE
 			assertJump : in std_logic;
 			assertZeroFlag : in std_logic;
 			futureADDR : out std_logic_vector(7 downto 0)
@@ -21,7 +22,7 @@ architecture struct of interface_JUMP_BRANCH is
 signal midBRANCHADDRESS, midBRANCHADDRESSNEXT : std_logic_vector(7 downto 0);
 signal midMUXSEL : std_logic;
 
-component cla8bitALU is --aluCLA_8bit
+component cla8bitALU is
 	port 
 		(
 			inA : in std_logic_vector(7 downto 0);
@@ -77,6 +78,6 @@ begin
 					outp2 => futureADDR
 				);
 	--Drive a signal: BEQ condition of branch mux select
-	midMUXSEL <= assertZeroFlag and assertBranch;
+	midMUXSEL <= (assertZeroFlag and assertBranch) or (not(assertZeroFlag) and assertBranchNotEqual);
 end struct;
 
