@@ -13,7 +13,7 @@
 --applicable agreement for further details.
 
 
-component instrMemoryREG
+component instrMemoryReg
 	PORT
 	(
 		address		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);

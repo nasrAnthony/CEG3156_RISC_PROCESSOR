@@ -103,6 +103,6 @@ reg32 : reg32bit
 				outBits => o_iNSTRUCTION
 			);
 --Drive output :
-o_addres <= midAddPointedByPC;
+o_Addres <= midAddPointedByPC;
 
 end RTL;

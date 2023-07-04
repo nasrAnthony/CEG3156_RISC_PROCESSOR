@@ -25,7 +25,10 @@ entity mainUnitProc8bit is
 			cRegDst : out std_logic;
 			cALUSRC : out std_logic;
 			cMemToReg: out std_logic;
-			cBNE : out std_logic
+			testInstruction : out std_logic_vector(31 downto 0);
+			cBNE : out std_logic;
+			midNextAddress_o : out std_logic_vector(7 downto 0);
+			incAddress : out std_logic_vector(7 downto 0)
 		);
 end entity;
 
@@ -37,7 +40,9 @@ signal midZeroFlag : std_logic;
 signal midSlowCLK : std_logic;
 --control sigs. 
 signal midRegDst, midBranch, midMemWrite, midMemToReg, midMemRead, midALUsrc, midRegWrite , midJump, midBNE: std_logic;
-signal midPC, midNextAddr, midIncrementedAddress : std_logic_vector(7 downto 0);
+signal midPC : std_logic_vector(7 downto 0);
+signal  midNextAddr : std_logic_vector(7 downto 0) := "00000000";
+signal midIncrementedAddress : std_logic_vector(7 downto 0);
 signal midInstruction  : std_logic_vector(31 downto 0);
 signal midData1, midData2 : std_logic_vector(7 downto 0);
 signal midRegData, midALUres : std_logic_vector(7 downto 0);
@@ -256,5 +261,8 @@ cRegDst <=  midRegDst;
 cALUSRC <=  midALUsrc; 
 cMemToReg <=  midMemToReg; 
 cBNE <=  midBNE;
+testInstruction  <= midInstruction;
+midNextAddress_o <= midNextAddr;
+incAddress <= midIncrementedAddress;
 
 end struct;

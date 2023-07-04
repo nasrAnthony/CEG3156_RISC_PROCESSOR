@@ -12,6 +12,7 @@ entity interface_JUMP_BRANCH is
 			assertBranchNotEqual : in std_logic; -- BNE
 			assertJump : in std_logic;
 			assertZeroFlag : in std_logic;
+			testMuxSel : out std_logic;
 			futureADDR : out std_logic_vector(7 downto 0)
 			
 		);
@@ -72,8 +73,8 @@ begin
 		port 
 			map 
 				(
-					inp1 => instrBITS(7 downto 0),
-					inp2 => midBRANCHADDRESS,
+					inp1 => midBRANCHADDRESSNEXT,
+					inp2 => instrBITS(7 downto 0),
 					cntr => assertJump, 
 					outp2 => futureADDR
 				);

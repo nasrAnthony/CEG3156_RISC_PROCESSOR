@@ -4,7 +4,7 @@
 -- MODULE: altsyncram 
 
 -- ============================================================
--- File Name: instrMemoryREG.vhd
+-- File Name: instrMemoryReg.vhd
 -- Megafunction Name(s):
 -- 			altsyncram
 --
@@ -39,14 +39,14 @@ USE ieee.std_logic_1164.all;
 LIBRARY altera_mf;
 USE altera_mf.all;
 
-ENTITY instrMemoryREG IS
+ENTITY instrMemoryReg IS
 	PORT
 	(
 		address		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
 		clock		: IN STD_LOGIC  := '1';
 		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
 	);
-END instrMemoryREG;
+END instrMemoryReg;
 
 
 ARCHITECTURE SYN OF instrmemoryreg IS
@@ -134,7 +134,7 @@ END SYN;
 -- Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 -- Retrieval info: PRIVATE: RegAddr NUMERIC "1"
 -- Retrieval info: PRIVATE: RegOutput NUMERIC "1"
--- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "1"
+-- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
 -- Retrieval info: PRIVATE: SingleClock NUMERIC "1"
 -- Retrieval info: PRIVATE: UseDQRAM NUMERIC "0"
 -- Retrieval info: PRIVATE: WidthAddr NUMERIC "8"
@@ -161,10 +161,9 @@ END SYN;
 -- Retrieval info: CONNECT: @address_a 0 0 8 0 address 0 0 8 0
 -- Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 32 0 @q_a 0 0 32 0
--- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryREG.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryREG.inc FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryREG.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryREG.bsf FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryREG_inst.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryREG_syn.v TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryReg.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryReg.inc FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryReg.cmp TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryReg.bsf FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL instrMemoryReg_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: altera_mf

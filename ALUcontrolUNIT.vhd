@@ -17,8 +17,9 @@ architecture struct of ALUcontrolUNIT  is
 		--001 or 
 		--010 add
 		--110 sub
-		o_oper(2) <= (i_oper(1) and alu_OP(1)) or alu_OP(1);
-		o_oper(1) <= ((not alu_op(1)) or (not i_oper(2)));
+		--111 set on less than
+		o_oper(2) <= (i_oper(1) and alu_OP(1)) or alu_OP(0);
+		o_oper(1) <= (not alu_op(1)) or (not i_oper(2)) or alu_OP(0);
 		o_oper(0) <= (i_oper(0) or i_oper(3)) and alu_OP(1);
 end struct;
 

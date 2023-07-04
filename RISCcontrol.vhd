@@ -38,20 +38,20 @@ begin
  --ADD BNE
  -- 000000 : (0  : decimal) -> Rtype
 midRT <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and not(iOP(1)) and not(iOP(0));
- -- 100011 : (35 : decimal) -> Store
+ -- 100011 : (35 : decimal) -> Load 
 midLW <= iOP(5) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and iOP(1) and iOP(0);
- -- 101011 : (43 : decimal) -> Load 
+ -- 101011 : (43 : decimal) -> Store
 midSW <= iOP(5) and not(iOP(4)) and iOP(3) and not(iOP(2)) and iOP(1) and iOP(0);
  -- 000010 : (2  : decimal) -> Jump 
 midJUMP <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and not(iOP(2)) and iOP(1) and not(iOP(0));
  -- 000100 : (4  : decimal) -> BEQ 
-midBEQ <= not(iOP(5)) and iOP(4) and not(iOP(3)) and iOP(2) and not(iOP(1)) and not(iOP(0));
+midBEQ <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and iOP(2) and not(iOP(1)) and not(iOP(0));
  -- 000101 : (5  : decimal) -> BNE
-midBNE <= not(iOP(5)) and iOP(4) and not(iOP(3)) and iOP(2) and not(iOP(1)) and iOP(0);
+midBNE <= not(iOP(5)) and not(iOP(4)) and not(iOP(3)) and iOP(2) and not(iOP(1)) and iOP(0);
 
 --Driving the correct sets and resets to the control signals output by the control unit. 
 oALUop(1) <= midRT;
-oALUop(0) <= midBEQ;
+oALUop(0) <= midBEQ or midBNE;
 oRegDst <= midRT;
 oRegWrite <= midLW or midRT;
 oJump <= midJUMP;

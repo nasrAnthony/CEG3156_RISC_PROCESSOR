@@ -146,7 +146,7 @@ END SYN;
 -- Retrieval info: PRIVATE: RegAddr NUMERIC "1"
 -- Retrieval info: PRIVATE: RegData NUMERIC "1"
 -- Retrieval info: PRIVATE: RegOutput NUMERIC "1"
--- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "1"
+-- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
 -- Retrieval info: PRIVATE: SingleClock NUMERIC "1"
 -- Retrieval info: PRIVATE: UseDQRAM NUMERIC "1"
 -- Retrieval info: PRIVATE: WRCONTROL_ACLR_A NUMERIC "0"
@@ -184,5 +184,4 @@ END SYN;
 -- Retrieval info: GEN_FILE: TYPE_NORMAL dataMemoryReg.cmp TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL dataMemoryReg.bsf FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL dataMemoryReg_inst.vhd FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL dataMemoryReg_syn.v TRUE
 -- Retrieval info: LIB_FILE: altera_mf
